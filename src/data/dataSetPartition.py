@@ -5,16 +5,16 @@ import numpy as np
 from dataVectorization import vectorize_data
 
 # generate the train(4/5) and test datasets(1/5)
-def train_test_partition(positive_file,negative_file):
+def train_test_partition(positive_file,negative_file,doshuffle=False):
     # generate the vectorized xs and ys
-    x_dataset,y_dataset =  vectorize_data(positive_file,negative_file)
+    x_dataset,y_dataset =  vectorize_data(positive_file,negative_file,doshuffle)
     print("data vectorization in function train_test_partition finished!")
     print(len(x_dataset))
     # generate test and train dataset
-    x_test_dataset = x_dataset[0:752]
-    y_test_dataset = y_dataset[0:752]
-    x_train_dataset = x_dataset[752:]
-    y_train_dataset = y_dataset[752:]
+    x_test_dataset = x_dataset[:] # x_dataset[0:752]
+    y_test_dataset = y_dataset[:] # y_dataset[0:752]
+    x_train_dataset = x_dataset[:] # x_dataset[752:]
+    y_train_dataset = y_dataset[:] # y_dataset[752:]
     print("train_test_partition finished!")
     return x_train_dataset,y_train_dataset,x_test_dataset,y_test_dataset
 

@@ -38,9 +38,9 @@ def transform_ydata(df_column):
     return y_dataset
 
 # read the data and transform into vectors of numpy array for deep learning
-def vectorize_data(positive_file_path,negative_file_path):
+def vectorize_data(positive_file_path,negative_file_path,doshuffle):
     # read files as dataframe    
-    dataframe = dataSetGenerate.read_new_csv(positive_file_path,negative_file_path)
+    dataframe = dataSetGenerate.read_new_csv(positive_file_path,negative_file_path,doshuffle)
     # transform the dataset into vectors for deep learning
     x_dataset = transform_xdata(dataframe["seq_struc"])
     y_dataset = transform_ydata(dataframe["Classification"])
