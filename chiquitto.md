@@ -11,11 +11,23 @@ conda create python=3.10.9 --name dnnPreMiR -y
 
 conda activate dnnPreMiR
 
+conda install -c conda-forge cudatoolkit=11.2.2 cudnn=8.1.0 -y
 # pip install --upgrade keras
-pip install tensorflow
 python -m pip install viennarna
 pip install pandas
 pip install scikit-learn
+```
+
+# Verify install of GPU
+
+```bash
+python3 -c "import os; os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'; import tensorflow as tf; print('Num GPUs Available: ', len(tf.config.list_physical_devices('GPU')))"
+```
+
+# To remove the env
+
+```bash
+conda remove --name dnnPreMiR --all
 ```
 
 # Convert CSV para FASTA
@@ -56,3 +68,7 @@ python isPreMiR_chiquitto.py -i testData/chiquitto/chiquitto.fa -o temp/results_
 python isPreMiR_chiquitto.py -i testData/chiquitto/chiquitto.fa -o temp/results_rnn.csv -m models/RNN_model.h5
 python isPreMiR_chiquitto.py -i testData/chiquitto/chiquitto.fa -o temp/results_cnnrnn.csv -m models/CNNRNN_model.h5
 ```
+
+
+from keras import backend as K
+K.tensorflow_backend._get_available_gpus()
